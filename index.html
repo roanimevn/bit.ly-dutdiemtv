@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xem Truyền Hình Trực Tuyến - VTV, SCTV, THVL</title>
-    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3075/3075908.png">
+    <!-- Thư viện Video.js hỗ trợ hiển thị giao diện TRỰC TIẾP chuyên nghiệp -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <!-- Thư viện Hls.js hỗ trợ phát luồng m3u8 -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
 
@@ -18,10 +18,13 @@
     <div class="container">
         <!-- Khung trình phát Video -->
         <div class="player-container">
-            <div class="video-wrapper">
-                <video id="video-player" controls autoplay poster="https://via.placeholder.com/800x450?text=Ch%E1%BB%8Dn+K%C3%AAnh+%C4%90%E1%BB%83+Xem"></video>
-                <div class="live-badge" id="live-indicator">🔴 TRỰC TIẾP</div>
-            </div>
+            <video 
+                id="my-video" 
+                class="video-js vjs-default-skin vjs-big-play-centered 16-9" 
+                controls 
+                preload="auto"
+                data-setup='{"liveui": true}'>
+            </video>
             <div class="now-playing">
                 <span id="current-channel-name">Vui lòng chọn kênh để xem</span>
             </div>
@@ -45,7 +48,7 @@
                 <button class="channel-btn" onclick="playChannel('VTV10', 'https://live.fptplay53.net/live/media/vtv10/live247-hls-avc/index.m3u8')">VTV10</button>
             </div>
 
-            <!-- NHÓM SCTV SPORTS (ĐÃ SỬA LINK VẬN HÀNH) -->
+            <!-- NHÓM SCTV SPORTS -->
             <div class="group-title">Kênh Thể Thao SCTV (Sports)</div>
             <div class="channel-grid">
                 <button class="channel-btn sports" onclick="playChannel('SCTV 15 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv15hd_vhls.smil/chunklist.m3u8')">SCTV 15</button>
@@ -53,14 +56,14 @@
                 <button class="channel-btn sports" onclick="playChannel('SCTV 22 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv22hd_vhls.smil/chunklist.m3u8')">SCTV 22</button>
             </div>
 
-            <!-- NHÓM THVL (ĐÃ SỬA LINK VẬN HÀNH) -->
+            <!-- NHÓM THVL -->
             <div class="group-title">Đài Truyền Hình Vĩnh Long (THVL)</div>
             <div class="channel-grid">
                 <button class="channel-btn thvl" onclick="playChannel('THVL 1', 'https://live.fptplay53.net/live/media/vinhlong1/live247-hls-avc/index.m3u8')">THVL 1</button>
                 <button class="channel-btn thvl" onclick="playChannel('THVL 2', 'https://live.fptplay53.net/live/media/vinhlong2/live247-hls-avc/index.m3u8')">THVL 2</button>
                 <button class="channel-btn thvl" onclick="playChannel('THVL 3', 'https://live.fptplay53.net/live/media/vinhlong3/live247-hls-avc/index.m3u8')">THVL 3</button>
-                <button class="channel-btn thvl" onclick="playChannel('THVL 4', 'https://live.fptplay53.net/live/media/vinhlong4/live247-hls-avc/index.m3u8')">THVL 4</button>
-                <button class="channel-btn thvl" onclick="playChannel('THVL 5', 'https://live.fptplay53.net/live/media/vinhlong5/live247-hls-avc/index.m3u8')">THVL 5</button>
+                <button class="channel-btn thvl" onclick="playChannel('THVL 4', 'https://live.fptplay53.net/epzhd2/vinhlong4hd_vhls.smil/chunklist.m3u8')">THVL 4</button>
+                <button class="channel-btn thvl" onclick="playChannel('THVL 5', 'https://live.fptplay53.net/epzsd1/vinhlong5_vhls.smil/chunklist.m3u8')">THVL 5</button>
             </div>
 
         </div>
