@@ -31,7 +31,7 @@ header h1 {
     gap: 20px;
 }
 
-/* Khung trình phát Video */
+/* Tùy chỉnh Video Player */
 .player-container {
     flex: 2;
     background-color: #000;
@@ -40,32 +40,17 @@ header h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    background-color: #000;
-}
-
-#video-player {
+.video-js {
     width: 100%;
     aspect-ratio: 16 / 9;
-    display: block;
+    height: auto !important;
 }
 
-/* Huy hiệu TRỰC TIẾP đè lên góc Video */
-.live-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background-color: rgba(229, 9, 20, 0.85);
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+/* Đổi màu nút Trực Tiếp (LIVE) thành màu đỏ đỏ nhấp nháy */
+.vjs-live-control {
     font-weight: bold;
-    border-radius: 4px;
-    letter-spacing: 1px;
-    display: none; /* Ẩn đi khi chưa chọn kênh */
-    z-index: 10;
+    color: #ff4d4d !important;
+    text-transform: uppercase;
 }
 
 .now-playing {
@@ -74,9 +59,6 @@ header h1 {
     font-weight: bold;
     color: #4caf50;
     font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
 /* Sidebar Danh sách Kênh */
