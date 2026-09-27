@@ -3,11 +3,13 @@ let hlsPlayer = null;
 function playChannel(channelName, streamUrl) {
     const video = document.getElementById('video-player');
     const channelTitle = document.getElementById('current-channel-name');
+    const liveIndicator = document.getElementById('live-indicator');
     
-    // Cập nhật tên kênh hiển thị
-    channelTitle.innerText = "▶ Đang phát: " + channelName;
+    // Cập nhật tên kênh & Bật nhãn Trực tiếp
+    channelTitle.innerHTML = "Đang phát: <b>" + channelName + "</b>";
+    liveIndicator.style.display = "block";
 
-    // Đánh dấu nút đang được chọn (Active)
+    // Đánh dấu nút active
     const buttons = document.querySelectorAll('.channel-btn');
     buttons.forEach(btn => {
         if (btn.innerText.trim() === channelName || channelName.includes(btn.innerText.trim())) {
@@ -17,27 +19,28 @@ function playChannel(channelName, streamUrl) {
         }
     });
 
-    // Phát bằng HLS.js (dành cho Chrome, Firefox, Edge, Android...)
+    // Phát bằng HLS.js
     if (Hls.isSupported()) {
         if (hlsPlayer) {
-            hlsPlayer.destroy(); // Hủy luồng phát hiện tại để giải phóng bộ nhớ
+            hlsPlayer.destroy();
         }
-        hlsPlayer = new Hls();
+        hlsPlayer = new Hls({
+            enableWorker: true,
+            lowLatencyMode: true
+        });
         hlsPlayer.loadSource(streamUrl);
         hlsPlayer.attachMedia(video);
         hlsPlayer.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play().catch(error => {
-                console.log("Tự động phát bị chặn bởi trình duyệt:", error);
-            });
+            video.play().catch(err => console.log("Cần tương tác để phát video:", err));
         });
     } 
-    // Hỗ trợ Safari (iOS / macOS tích hợp sẵn HLS)
+    // Hỗ trợ Safari/iOS
     else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = streamUrl;
         video.addEventListener('loadedmetadata', function () {
             video.play();
         });
     } else {
-        alert("Trình duyệt của bạn không hỗ trợ phát dạng luồng video HLS này!");
+        alert("Trình duyệt không hỗ trợ định dạng phát trực tiếp này!");
     }
 }
