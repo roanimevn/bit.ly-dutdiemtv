@@ -27,7 +27,6 @@ header {
 .site-logo {
     height: 40px;
     width: auto;
-    object-fit: contain;
 }
 
 .header-title {
@@ -59,24 +58,18 @@ header {
     background-color: #000;
 }
 
-#video-player {
+/* Định dạng Video.js chuẩn tỉ lệ 16:9 và sửa lỗi hiển thị trên TV */
+.video-js {
     width: 100%;
     aspect-ratio: 16 / 9;
-    display: block;
+    height: auto !important;
 }
 
-.live-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background-color: rgba(229, 9, 20, 0.9);
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.8rem;
+/* Tùy chỉnh thanh điều khiển Video.js: Nút Trực Tiếp (LIVE) màu đỏ */
+.vjs-live-control {
+    color: #ff3333 !important;
     font-weight: bold;
-    border-radius: 4px;
-    display: none;
-    z-index: 10;
+    text-transform: uppercase;
 }
 
 .now-playing {
@@ -87,7 +80,7 @@ header {
     font-size: 1.1rem;
 }
 
-/* Bảng Lịch phát sóng */
+/* EPG Lịch phát sóng */
 .epg-box {
     padding: 15px;
     background-color: #1a1a1a;
@@ -126,7 +119,7 @@ header {
     color: #ddd;
 }
 
-/* Sidebar & Logo Nhà Đài */
+/* Logo Nhà Đài (Xóa Chữ - Chỉ giữ Logo Lớn) */
 .sidebar {
     flex: 1;
     background-color: #1f1f1f;
@@ -136,28 +129,26 @@ header {
     overflow-y: auto;
 }
 
-.group-title {
-    font-size: 0.9rem;
-    margin: 15px 0 10px 0;
-    color: #ff9800;
-    border-left: 4px solid #ff9800;
-    padding-left: 8px;
-    text-transform: uppercase;
+.group-title-logo {
+    margin: 18px 0 10px 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #333;
     display: flex;
     align-items: center;
-    gap: 8px;
 }
 
-.station-logo {
-    height: 22px;
+.group-title-logo:first-child {
+    margin-top: 0;
+}
+
+.station-logo-big {
+    height: 32px;
     width: auto;
     object-fit: contain;
-    background-color: #fff;
-    padding: 2px 4px;
-    border-radius: 3px;
+    background-color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
 }
-
-.group-title:first-child { margin-top: 0; }
 
 .channel-grid {
     display: grid;
