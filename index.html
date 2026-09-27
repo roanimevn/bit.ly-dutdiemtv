@@ -7,7 +7,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3075/3075908.png">
     
-    <!-- Thư viện Video.js chuyên dụng cho Live Stream (Sửa lỗi 0:00/0:34 & Lỗi mất hình TV) -->
+    <!-- Thư viện Video.js chuyên dụng cho Live Stream (Fix lỗi Smart TV & 0:00/0:34) -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <!-- HEADER VỚI LOGO TRUYỀN HÌNH -->
+    <!-- HEADER VỚI LOGO -->
     <header>
         <div class="header-logo-container">
             <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="Logo Web" class="site-logo">
@@ -50,10 +50,10 @@
             </div>
         </div>
 
-        <!-- DANH SÁCH KÊNH (ĐÃ XÓA CHỮ NHÀ ĐÀI - CHỈ GIỮ LOGO LỚN) -->
+        <!-- DANH SÁCH KÊNH (CHỈ CÓ LOGO NHÀ ĐÀI) -->
         <div class="sidebar">
             
-            <!-- NHÓM VTV: CHỈ CÓ LOGO -->
+            <!-- NHÓM VTV -->
             <div class="group-title-logo">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/VTV_Logo.svg/1200px-VTV_Logo.svg.png" alt="VTV" class="station-logo-big">
             </div>
@@ -63,6 +63,8 @@
                 <button class="channel-btn" onclick="playChannel('VTV3', 'https://live.fptplay53.net/live/media/vtv3/live247-hls-avc/index.m3u8', 'vtv3')">VTV3</button>
                 <button class="channel-btn" onclick="playChannel('VTV4', 'https://live.fptplay53.net/live/media/vtv4/live247-hls-avc/index.m3u8', 'vtv4')">VTV4</button>
                 <button class="channel-btn" onclick="playChannel('VTV5', 'https://live.fptplay53.net/live/media/vtv5/live247-hls-avc/index.m3u8', 'vtv5')">VTV5</button>
+                <button class="channel-btn" onclick="playChannel('VTV5 Tây Nam Bộ', 'https://live.fptplay53.net/live/media/vtv5tnb/live247-hls-avc/index.m3u8', 'vtv5tnb')">VTV5 TNB</button>
+                <button class="channel-btn" onclick="playChannel('VTV5 Tây Nguyên', 'https://live.fptplay53.net/live/media/vtv5tn/live247-hls-avc/index.m3u8', 'vtv5tn')">VTV5 TN</button>
                 <button class="channel-btn" onclick="playChannel('VTV6', 'https://live.fptplay53.net/live/media/vtv6/live247-hls-avc/index.m3u8', 'vtv6')">VTV6</button>
                 <button class="channel-btn" onclick="playChannel('VTV7', 'https://live.fptplay53.net/live/media/vtv7/live247-hls-avc/index.m3u8', 'vtv7')">VTV7</button>
                 <button class="channel-btn" onclick="playChannel('VTV8', 'https://live.fptplay53.net/live/media/vtv8/live-hls-avc/index.m3u8', 'vtv8')">VTV8</button>
@@ -70,7 +72,32 @@
                 <button class="channel-btn" onclick="playChannel('VTV10', 'https://live.fptplay53.net/live/media/vtv10/live247-hls-avc/index.m3u8', 'vtv10')">VTV10</button>
             </div>
 
-            <!-- NHÓM SCTV: CHỈ CÓ LOGO -->
+            <!-- NHÓM HTV -->
+            <div class="group-title-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/HTV_logo_2016.svg/1200px-HTV_logo_2016.svg.png" alt="HTV" class="station-logo-big">
+            </div>
+            <div class="channel-grid">
+                <button class="channel-btn htv" onclick="playChannel('HTV1', 'https://live.fptplay53.net/live/media/htv1/live247-hls-avc/index.m3u8', 'htv1')">HTV1</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV2', 'https://live.fptplay53.net/live/media/htv2/live247-hls-avc/index.m3u8', 'htv2')">HTV2</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV3', 'https://live.fptplay53.net/live/media/htv3/live247-hls-avc/index.m3u8', 'htv3')">HTV3</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV4', 'https://live.fptplay53.net/live/media/htv4/live247-hls-avc/index.m3u8', 'htv4')">HTV4</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV7', 'https://live.fptplay53.net/live/media/htv7/live247-hls-avc/index.m3u8', 'htv7')">HTV7</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV9', 'https://live.fptplay53.net/live/media/htv9/live247-hls-avc/index.m3u8', 'htv9')">HTV9</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV Thể Thao', 'https://live.fptplay53.net/live/media/htvtt/live247-hls-avc/index.m3u8', 'htvtt')">HTV Thể Thao</button>
+            </div>
+
+            <!-- NHÓM ON SPORTS / VTVcab -->
+            <div class="group-title-logo">
+                <img src="https://i.imgur.com/3pXn3Jm.png" alt="ON Sports" class="station-logo-big">
+            </div>
+            <div class="channel-grid">
+                <button class="channel-btn onsports" onclick="playChannel('ON Sports', 'https://live.fptplay53.net/epzhd1/onsports_vhls.smil/chunklist.m3u8', 'onsports')">ON Sports</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Sports+', 'https://live.fptplay53.net/epzhd1/onsportsplus_vhls.smil/chunklist.m3u8', 'onsportsplus')">ON Sports+</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Football', 'https://live.fptplay53.net/epzhd1/onfootball_vhls.smil/chunklist.m3u8', 'onfootball')">ON Football</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Sports News', 'https://live.fptplay53.net/epzhd1/onsportsnews_vhls.smil/chunklist.m3u8', 'onsportsnews')">ON Sports News</button>
+            </div>
+
+            <!-- NHÓM SCTV -->
             <div class="group-title-logo">
                 <img src="https://i.imgur.com/kOyPmAu.png" alt="SCTV" class="station-logo-big">
             </div>
@@ -80,7 +107,7 @@
                 <button class="channel-btn sports" onclick="playChannel('SCTV 22 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv22hd_vhls.smil/chunklist.m3u8', 'sctv22')">SCTV 22</button>
             </div>
 
-            <!-- NHÓM THVL: CHỈ CÓ LOGO -->
+            <!-- NHÓM THVL -->
             <div class="group-title-logo">
                 <img src="https://i.imgur.com/pTVybK6.png" alt="THVL" class="station-logo-big">
             </div>
