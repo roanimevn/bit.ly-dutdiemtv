@@ -1,13 +1,15 @@
-let hlsPlayer = null;
+// Khởi tạo Video.js Player
+const player = videojs('my-video', {
+    autoplay: true,
+    controls: true,
+    liveui: true // Ép trình phát chuyển sang chế độ TRỰC TIẾP (ẩn thanh đếm giây 0:00/0:34)
+});
 
 function playChannel(channelName, streamUrl) {
-    const video = document.getElementById('video-player');
     const channelTitle = document.getElementById('current-channel-name');
-    const liveIndicator = document.getElementById('live-indicator');
     
-    // Cập nhật tên kênh & Bật nhãn Trực tiếp
+    // Cập nhật tên kênh
     channelTitle.innerHTML = "Đang phát: <b>" + channelName + "</b>";
-    liveIndicator.style.display = "block";
 
     // Đánh dấu nút active
     const buttons = document.querySelectorAll('.channel-btn');
@@ -19,28 +21,11 @@ function playChannel(channelName, streamUrl) {
         }
     });
 
-    // Phát bằng HLS.js
-    if (Hls.isSupported()) {
-        if (hlsPlayer) {
-            hlsPlayer.destroy();
-        }
-        hlsPlayer = new Hls({
-            enableWorker: true,
-            lowLatencyMode: true
-        });
-        hlsPlayer.loadSource(streamUrl);
-        hlsPlayer.attachMedia(video);
-        hlsPlayer.on(Hls.Events.MANIFEST_PARSED, function () {
-            video.play().catch(err => console.log("Cần tương tác để phát video:", err));
-        });
-    } 
-    // Hỗ trợ Safari/iOS
-    else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        video.src = streamUrl;
-        video.addEventListener('loadedmetadata', function () {
-            video.play();
-        });
-    } else {
-        alert("Trình duyệt không hỗ trợ định dạng phát trực tiếp này!");
-    }
+    // Thay đổi luồng phát video HLS và phát trực tiếp
+    player.src({
+        src: streamUrl,
+        type: 'application/x-mpegURL'
+    });
+    
+    player.play();
 }
