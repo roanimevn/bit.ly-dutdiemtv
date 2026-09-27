@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Truyền Hình Trực Tuyến & Lịch Phát Sóng</title>
-    <!-- Favicon cho biểu tượng Tab Trình Duyệt -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3075/3075908.png">
     
+    <!-- Thư viện Video.js chuyên dụng cho Live Stream (Sửa lỗi 0:00/0:34 & Lỗi mất hình TV) -->
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Hls.js hỗ trợ xem trên TV không bị đen hình -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
 
-    <!-- HEADER VỚI LOGO (ĐÃ BỎ CHỮ DUTDIEMTV) -->
+    <!-- HEADER VỚI LOGO TRUYỀN HÌNH -->
     <header>
         <div class="header-logo-container">
             <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="Logo Web" class="site-logo">
@@ -25,15 +27,21 @@
         <!-- KHUNG PHÁT VIDEO -->
         <div class="player-container">
             <div class="video-wrapper">
-                <video id="video-player" controls autoplay playsinline webkit-playsinline poster="https://via.placeholder.com/800x450?text=Ch%E1%BB%8Dn+K%C3%AAnh+%C4%90%E1%BB%83+Xem"></video>
-                <div class="live-badge" id="live-indicator">🔴 TRỰC TIẾP</div>
+                <video 
+                    id="main-player" 
+                    class="video-js vjs-default-skin vjs-big-play-centered 16-9" 
+                    controls 
+                    preload="auto" 
+                    playsinline 
+                    webkit-playsinline>
+                </video>
             </div>
             
             <div class="now-playing">
                 <span id="current-channel-name">Vui lòng chọn kênh để xem</span>
             </div>
 
-            <!-- BẢNG LỊCH PHÁT SÓNG (EPG) -->
+            <!-- BẢNG LỊCH PHÁT SÓNG THẬT (EPG API) -->
             <div class="epg-box">
                 <h3>📅 Lịch phát sóng hôm nay</h3>
                 <div id="epg-list" class="epg-list">
@@ -42,13 +50,12 @@
             </div>
         </div>
 
-        <!-- DANH SÁCH KÊNH CÓ LOGO NHÀ ĐÀI -->
+        <!-- DANH SÁCH KÊNH (ĐÃ XÓA CHỮ NHÀ ĐÀI - CHỈ GIỮ LOGO LỚN) -->
         <div class="sidebar">
             
-            <!-- NHÓM VTV -->
-            <div class="group-title">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/VTV_Logo.svg/1200px-VTV_Logo.svg.png" alt="VTV Logo" class="station-logo">
-                Đài Truyền Hình Việt Nam (VTV)
+            <!-- NHÓM VTV: CHỈ CÓ LOGO -->
+            <div class="group-title-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/VTV_Logo.svg/1200px-VTV_Logo.svg.png" alt="VTV" class="station-logo-big">
             </div>
             <div class="channel-grid">
                 <button class="channel-btn" onclick="playChannel('VTV1', 'https://live.fptplay53.net/live/media/vtv1/live247-hls-avc/index.m3u8', 'vtv1')">VTV1</button>
@@ -63,10 +70,9 @@
                 <button class="channel-btn" onclick="playChannel('VTV10', 'https://live.fptplay53.net/live/media/vtv10/live247-hls-avc/index.m3u8', 'vtv10')">VTV10</button>
             </div>
 
-            <!-- NHÓM SCTV SPORTS -->
-            <div class="group-title">
-                <img src="https://i.imgur.com/kOyPmAu.png" alt="SCTV Logo" class="station-logo">
-                Kênh Thể Thao SCTV (Sports)
+            <!-- NHÓM SCTV: CHỈ CÓ LOGO -->
+            <div class="group-title-logo">
+                <img src="https://i.imgur.com/kOyPmAu.png" alt="SCTV" class="station-logo-big">
             </div>
             <div class="channel-grid">
                 <button class="channel-btn sports" onclick="playChannel('SCTV 15 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv15hd_vhls.smil/chunklist.m3u8', 'sctv15')">SCTV 15</button>
@@ -74,10 +80,9 @@
                 <button class="channel-btn sports" onclick="playChannel('SCTV 22 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv22hd_vhls.smil/chunklist.m3u8', 'sctv22')">SCTV 22</button>
             </div>
 
-            <!-- NHÓM THVL -->
-            <div class="group-title">
-                <img src="https://i.imgur.com/pTVybK6.png" alt="THVL Logo" class="station-logo">
-                Đài Truyền Hình Vĩnh Long (THVL)
+            <!-- NHÓM THVL: CHỈ CÓ LOGO -->
+            <div class="group-title-logo">
+                <img src="https://i.imgur.com/pTVybK6.png" alt="THVL" class="station-logo-big">
             </div>
             <div class="channel-grid">
                 <button class="channel-btn thvl" onclick="playChannel('THVL 1', 'https://live.fptplay53.net/live/media/vinhlong1/live247-hls-avc/index.m3u8', 'thvl1')">THVL 1</button>
