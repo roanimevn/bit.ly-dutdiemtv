@@ -7,7 +7,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3075/3075908.png">
     
-    <!-- Thư viện Video.js chuyên dụng cho Live Stream (Fix lỗi Smart TV & 0:00/0:34) -->
+    <!-- Video.js Player -->
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     
@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <!-- HEADER VỚI LOGO -->
+    <!-- HEADER -->
     <header>
         <div class="header-logo-container">
             <img src="https://cdn-icons-png.flaticon.com/512/3075/3075908.png" alt="Logo Web" class="site-logo">
@@ -26,7 +26,7 @@
     <div class="container">
         <!-- KHUNG PHÁT VIDEO -->
         <div class="player-container">
-            <div class="video-wrapper">
+            <div class="video-wrapper" id="video-wrapper">
                 <video 
                     id="main-player" 
                     class="video-js vjs-default-skin vjs-big-play-centered 16-9" 
@@ -41,7 +41,7 @@
                 <span id="current-channel-name">Vui lòng chọn kênh để xem</span>
             </div>
 
-            <!-- BẢNG LỊCH PHÁT SÓNG THẬT (EPG API) -->
+            <!-- BẢNG LỊCH PHÁT SÓNG THẬT (EPG) -->
             <div class="epg-box">
                 <h3>📅 Lịch phát sóng hôm nay</h3>
                 <div id="epg-list" class="epg-list">
@@ -58,18 +58,16 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/VTV_Logo.svg/1200px-VTV_Logo.svg.png" alt="VTV" class="station-logo-big">
             </div>
             <div class="channel-grid">
-                <button class="channel-btn" onclick="playChannel('VTV1', 'https://live.fptplay53.net/live/media/vtv1/live247-hls-avc/index.m3u8', 'vtv1')">VTV1</button>
-                <button class="channel-btn" onclick="playChannel('VTV2', 'https://live.fptplay53.net/live/media/vtv2/live247-hls-avc/index.m3u8', 'vtv2')">VTV2</button>
-                <button class="channel-btn" onclick="playChannel('VTV3', 'https://live.fptplay53.net/live/media/vtv3/live247-hls-avc/index.m3u8', 'vtv3')">VTV3</button>
-                <button class="channel-btn" onclick="playChannel('VTV4', 'https://live.fptplay53.net/live/media/vtv4/live247-hls-avc/index.m3u8', 'vtv4')">VTV4</button>
-                <button class="channel-btn" onclick="playChannel('VTV5', 'https://live.fptplay53.net/live/media/vtv5/live247-hls-avc/index.m3u8', 'vtv5')">VTV5</button>
-                <button class="channel-btn" onclick="playChannel('VTV5 Tây Nam Bộ', 'https://live.fptplay53.net/live/media/vtv5tnb/live247-hls-avc/index.m3u8', 'vtv5tnb')">VTV5 TNB</button>
-                <button class="channel-btn" onclick="playChannel('VTV5 Tây Nguyên', 'https://live.fptplay53.net/live/media/vtv5tn/live247-hls-avc/index.m3u8', 'vtv5tn')">VTV5 TN</button>
-                <button class="channel-btn" onclick="playChannel('VTV6', 'https://live.fptplay53.net/live/media/vtv6/live247-hls-avc/index.m3u8', 'vtv6')">VTV6</button>
-                <button class="channel-btn" onclick="playChannel('VTV7', 'https://live.fptplay53.net/live/media/vtv7/live247-hls-avc/index.m3u8', 'vtv7')">VTV7</button>
-                <button class="channel-btn" onclick="playChannel('VTV8', 'https://live.fptplay53.net/live/media/vtv8/live-hls-avc/index.m3u8', 'vtv8')">VTV8</button>
-                <button class="channel-btn" onclick="playChannel('VTV9', 'https://live.fptplay53.net/live/media/vtv9/live247-hls-avc/index.m3u8', 'vtv9')">VTV9</button>
-                <button class="channel-btn" onclick="playChannel('VTV10', 'https://live.fptplay53.net/live/media/vtv10/live247-hls-avc/index.m3u8', 'vtv10')">VTV10</button>
+                <button class="channel-btn" onclick="playChannel('VTV1', 'https://vtv1-hlsv4.vtv.vn/vtv1.m3u8', 'vtv1')">VTV1</button>
+                <button class="channel-btn" onclick="playChannel('VTV2', 'https://vtv2-hlsv4.vtv.vn/vtv2.m3u8', 'vtv2')">VTV2</button>
+                <button class="channel-btn" onclick="playChannel('VTV3', 'https://vtv3-hlsv4.vtv.vn/vtv3.m3u8', 'vtv3')">VTV3</button>
+                <button class="channel-btn" onclick="playChannel('VTV4', 'https://vtv4-hlsv4.vtv.vn/vtv4.m3u8', 'vtv4')">VTV4</button>
+                <button class="channel-btn" onclick="playChannel('VTV5', 'https://vtv5-hlsv4.vtv.vn/vtv5.m3u8', 'vtv5')">VTV5</button>
+                <button class="channel-btn" onclick="playChannel('VTV5 Tây Nam Bộ', 'https://vtv5tnb-hlsv4.vtv.vn/vtv5tnb.m3u8', 'vtv5tnb')">VTV5 TNB</button>
+                <button class="channel-btn" onclick="playChannel('VTV5 Tây Nguyên', 'https://vtv5tn-hlsv4.vtv.vn/vtv5tn.m3u8', 'vtv5tn')">VTV5 TN</button>
+                <button class="channel-btn" onclick="playChannel('VTV7', 'https://vtv7-hlsv4.vtv.vn/vtv7.m3u8', 'vtv7')">VTV7</button>
+                <button class="channel-btn" onclick="playChannel('VTV8', 'https://vtv8-hlsv4.vtv.vn/vtv8.m3u8', 'vtv8')">VTV8</button>
+                <button class="channel-btn" onclick="playChannel('VTV9', 'https://vtv9-hlsv4.vtv.vn/vtv9.m3u8', 'vtv9')">VTV9</button>
             </div>
 
             <!-- NHÓM HTV -->
@@ -77,13 +75,13 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/HTV_logo_2016.svg/1200px-HTV_logo_2016.svg.png" alt="HTV" class="station-logo-big">
             </div>
             <div class="channel-grid">
-                <button class="channel-btn htv" onclick="playChannel('HTV1', 'https://live.fptplay53.net/live/media/htv1/live247-hls-avc/index.m3u8', 'htv1')">HTV1</button>
-                <button class="channel-btn htv" onclick="playChannel('HTV2', 'https://live.fptplay53.net/live/media/htv2/live247-hls-avc/index.m3u8', 'htv2')">HTV2</button>
-                <button class="channel-btn htv" onclick="playChannel('HTV3', 'https://live.fptplay53.net/live/media/htv3/live247-hls-avc/index.m3u8', 'htv3')">HTV3</button>
-                <button class="channel-btn htv" onclick="playChannel('HTV4', 'https://live.fptplay53.net/live/media/htv4/live247-hls-avc/index.m3u8', 'htv4')">HTV4</button>
-                <button class="channel-btn htv" onclick="playChannel('HTV7', 'https://live.fptplay53.net/live/media/htv7/live247-hls-avc/index.m3u8', 'htv7')">HTV7</button>
-                <button class="channel-btn htv" onclick="playChannel('HTV9', 'https://live.fptplay53.net/live/media/htv9/live247-hls-avc/index.m3u8', 'htv9')">HTV9</button>
-                <button class="channel-btn htv" onclick="playChannel('HTV Thể Thao', 'https://live.fptplay53.net/live/media/htvtt/live247-hls-avc/index.m3u8', 'htvtt')">HTV Thể Thao</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV1', 'https://liveh12byt.vtvprime.vn/hls/HTV1/03.m3u8', 'htv1')">HTV1</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV2', 'https://liveh12byt.vtvprime.vn/hls/HTV2/03.m3u8', 'htv2')">HTV2</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV3', 'https://liveh12byt.vtvprime.vn/hls/HTV3/03.m3u8', 'htv3')">HTV3</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV4', 'https://liveh12byt.vtvprime.vn/hls/HTV4/03.m3u8', 'htv4')">HTV4</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV7', 'https://liveh12byt.vtvprime.vn/hls/HTV7/03.m3u8', 'htv7')">HTV7</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV9', 'https://liveh12byt.vtvprime.vn/hls/HTV9/03.m3u8', 'htv9')">HTV9</button>
+                <button class="channel-btn htv" onclick="playChannel('HTV Thể Thao', 'https://liveh12byt.vtvprime.vn/hls/HTVTT/03.m3u8', 'htvtt')">HTV Thể Thao</button>
             </div>
 
             <!-- NHÓM ON SPORTS / VTVcab -->
@@ -91,10 +89,10 @@
                 <img src="https://i.imgur.com/3pXn3Jm.png" alt="ON Sports" class="station-logo-big">
             </div>
             <div class="channel-grid">
-                <button class="channel-btn onsports" onclick="playChannel('ON Sports', 'https://live.fptplay53.net/epzhd1/onsports_vhls.smil/chunklist.m3u8', 'onsports')">ON Sports</button>
-                <button class="channel-btn onsports" onclick="playChannel('ON Sports+', 'https://live.fptplay53.net/epzhd1/onsportsplus_vhls.smil/chunklist.m3u8', 'onsportsplus')">ON Sports+</button>
-                <button class="channel-btn onsports" onclick="playChannel('ON Football', 'https://live.fptplay53.net/epzhd1/onfootball_vhls.smil/chunklist.m3u8', 'onfootball')">ON Football</button>
-                <button class="channel-btn onsports" onclick="playChannel('ON Sports News', 'https://live.fptplay53.net/epzhd1/onsportsnews_vhls.smil/chunklist.m3u8', 'onsportsnews')">ON Sports News</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Sports', 'https://liveh12byt.vtvprime.vn/hls/ONSPORTS/03.m3u8', 'onsports')">ON Sports</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Sports+', 'https://liveh12byt.vtvprime.vn/hls/ONSPORTSPLUS/03.m3u8', 'onsportsplus')">ON Sports+</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Football', 'https://liveh12byt.vtvprime.vn/hls/ONFOOTBALL/03.m3u8', 'onfootball')">ON Football</button>
+                <button class="channel-btn onsports" onclick="playChannel('ON Sports News', 'https://liveh12byt.vtvprime.vn/hls/ONSPORTSNEWS/03.m3u8', 'onsportsnews')">ON Sports News</button>
             </div>
 
             <!-- NHÓM SCTV -->
@@ -102,9 +100,9 @@
                 <img src="https://i.imgur.com/kOyPmAu.png" alt="SCTV" class="station-logo-big">
             </div>
             <div class="channel-grid">
-                <button class="channel-btn sports" onclick="playChannel('SCTV 15 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv15hd_vhls.smil/chunklist.m3u8', 'sctv15')">SCTV 15</button>
-                <button class="channel-btn sports" onclick="playChannel('SCTV 17 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv17hd_vhls.smil/chunklist.m3u8', 'sctv17')">SCTV 17</button>
-                <button class="channel-btn sports" onclick="playChannel('SCTV 22 (Sports)', 'https://live.fptplay53.net/epzhd1/sctv22hd_vhls.smil/chunklist.m3u8', 'sctv22')">SCTV 22</button>
+                <button class="channel-btn sports" onclick="playChannel('SCTV 15 (Sports)', 'https://liveh12byt.vtvprime.vn/hls/SCTV15/03.m3u8', 'sctv15')">SCTV 15</button>
+                <button class="channel-btn sports" onclick="playChannel('SCTV 17 (Sports)', 'https://liveh12byt.vtvprime.vn/hls/SCTV17/03.m3u8', 'sctv17')">SCTV 17</button>
+                <button class="channel-btn sports" onclick="playChannel('SCTV 22 (Sports)', 'https://liveh12byt.vtvprime.vn/hls/SCTV22/03.m3u8', 'sctv22')">SCTV 22</button>
             </div>
 
             <!-- NHÓM THVL -->
@@ -112,11 +110,10 @@
                 <img src="https://i.imgur.com/pTVybK6.png" alt="THVL" class="station-logo-big">
             </div>
             <div class="channel-grid">
-                <button class="channel-btn thvl" onclick="playChannel('THVL 1', 'https://live.fptplay53.net/live/media/vinhlong1/live247-hls-avc/index.m3u8', 'thvl1')">THVL 1</button>
-                <button class="channel-btn thvl" onclick="playChannel('THVL 2', 'https://live.fptplay53.net/live/media/vinhlong2/live247-hls-avc/index.m3u8', 'thvl2')">THVL 2</button>
-                <button class="channel-btn thvl" onclick="playChannel('THVL 3', 'https://live.fptplay53.net/live/media/vinhlong3/live247-hls-avc/index.m3u8', 'thvl3')">THVL 3</button>
-                <button class="channel-btn thvl" onclick="playChannel('THVL 4', 'https://live.fptplay53.net/epzhd2/vinhlong4hd_vhls.smil/chunklist.m3u8', 'thvl4')">THVL 4</button>
-                <button class="channel-btn thvl" onclick="playChannel('THVL 5', 'https://live.fptplay53.net/epzsd1/vinhlong5_vhls.smil/chunklist.m3u8', 'thvl5')">THVL 5</button>
+                <button class="channel-btn thvl" onclick="playChannel('THVL 1', 'https://liveh12byt.vtvprime.vn/hls/THVL1/03.m3u8', 'thvl1')">THVL 1</button>
+                <button class="channel-btn thvl" onclick="playChannel('THVL 2', 'https://liveh12byt.vtvprime.vn/hls/THVL2/03.m3u8', 'thvl2')">THVL 2</button>
+                <button class="channel-btn thvl" onclick="playChannel('THVL 3', 'https://liveh12byt.vtvprime.vn/hls/THVL3/03.m3u8', 'thvl3')">THVL 3</button>
+                <button class="channel-btn thvl" onclick="playChannel('THVL 4', 'https://liveh12byt.vtvprime.vn/hls/THVL4/03.m3u8', 'thvl4')">THVL 4</button>
             </div>
 
         </div>
