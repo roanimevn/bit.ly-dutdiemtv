@@ -10,7 +10,6 @@ body {
     color: #ffffff;
 }
 
-/* Header & Logo Website */
 header {
     background-color: #1f1f1f;
     padding: 12px;
@@ -58,14 +57,12 @@ header {
     background-color: #000;
 }
 
-/* Định dạng Video.js chuẩn tỉ lệ 16:9 và sửa lỗi hiển thị trên TV */
 .video-js {
     width: 100%;
     aspect-ratio: 16 / 9;
     height: auto !important;
 }
 
-/* Tùy chỉnh thanh điều khiển Video.js: Nút Trực Tiếp (LIVE) màu đỏ */
 .vjs-live-control {
     color: #ff3333 !important;
     font-weight: bold;
@@ -119,7 +116,7 @@ header {
     color: #ddd;
 }
 
-/* Logo Nhà Đài (Xóa Chữ - Chỉ giữ Logo Lớn) */
+/* Logo Nhóm Kênh */
 .sidebar {
     flex: 1;
     background-color: #1f1f1f;
@@ -165,9 +162,15 @@ header {
     cursor: pointer;
     font-weight: bold;
     text-align: center;
+    font-size: 0.85rem;
 }
 
 .channel-btn:hover { background-color: #e50914; }
+.channel-btn.htv:hover { background-color: #d32f2f; }
+.channel-btn.onsports:hover { background-color: #00796b; }
+.channel-btn.sports:hover { background-color: #0288d1; }
+.channel-btn.thvl:hover { background-color: #7b1fa2; }
+
 .channel-btn.active { background-color: #4caf50 !important; }
 
 @media (min-width: 768px) {
