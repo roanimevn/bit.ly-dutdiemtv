@@ -57,7 +57,7 @@ async function fetchEPG(channelId) {
 
 // Xử lý tự động khi bị chặn CORS hoặc đứt luồng
 player.on('error', function() {
-    console.warn("Luồng video bị chặn hoặc lỗi CORS. Đang chuyển sang HLS-Proxy...");
+    console.warn("Luồng video bị chặn hoặc lỗi CORS.");
     const errorDisplay = player.getChild('errorDisplay');
     if (errorDisplay) {
         errorDisplay.close();
@@ -68,9 +68,9 @@ function playChannel(channelName, streamUrl, channelId) {
     const channelTitle = document.getElementById('current-channel-name');
     channelTitle.innerHTML = "Đang phát: <b>" + channelName + "</b>";
 
-    // Highlight nút được chọn
+    // Highlight nút logo được chọn dựa theo thuộc tính onclick
     document.querySelectorAll('.channel-btn').forEach(btn => {
-        if (btn.innerText.trim() === channelName || channelName.includes(btn.innerText.trim())) {
+        if (btn.getAttribute('onclick').includes(channelId)) {
             btn.classList.add('active');
         } else {
             btn.classList.remove('active');
@@ -79,7 +79,7 @@ function playChannel(channelName, streamUrl, channelId) {
 
     fetchEPG(channelId);
 
-    // Chèn CORS Proxy tự động nếu trình duyệt chặn
+    // Chèn CORS Proxy tự động nếu chạy bằng file:/// trực tiếp
     let finalUrl = streamUrl;
     if (window.location.protocol === 'file:') {
         finalUrl = 'https://corsproxy.io/?' + encodeURIComponent(streamUrl);
@@ -90,5 +90,5 @@ function playChannel(channelName, streamUrl, channelId) {
         type: 'application/x-mpegURL'
     });
     
-    player.play().catch(e => console.log("Cần ấn Play để khởi chạy:", e));
+    player.play().catch(e => console.log("Cần bấm Play để phát:", e));
 }
