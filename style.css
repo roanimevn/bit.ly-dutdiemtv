@@ -10,29 +10,26 @@ body {
     color: #ffffff;
 }
 
+/* Header chỉ chứa duy nhất Logo */
 header {
     background-color: #1f1f1f;
     padding: 12px;
     border-bottom: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header-logo-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 12px;
+    align-items: center;
 }
 
 .site-logo {
-    height: 40px;
+    height: 45px;
     width: auto;
-}
-
-.header-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #e50914;
-    letter-spacing: 1px;
+    object-fit: contain;
 }
 
 .container {
@@ -153,7 +150,7 @@ header {
     gap: 10px;
 }
 
-/* THIẾT LẬP NÚT LOGO KÊNH (BỎ CHỮ, CHỈ CÓ HÌNH LOGO) */
+/* NÚT BẤM LOGO KÊNH THƯ MỤC CỤC BỘ IMAGES */
 .channel-btn {
     background-color: #ffffff;
     border: 2px solid #444;
