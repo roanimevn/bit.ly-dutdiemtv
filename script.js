@@ -1,4 +1,4 @@
-// Cấu hình Player hiển thị chế độ Trực Tiếp (LiveUI) và tắt thanh 0:00/0:34
+// Khởi tạo Video.js phát chế độ Live
 const player = videojs('main-player', {
     autoplay: true,
     controls: true,
@@ -10,7 +10,7 @@ const player = videojs('main-player', {
     }
 });
 
-// Hàm gọi API Lịch Phát Sóng (EPG)
+// Hàm hiển thị Lịch phát sóng
 async function fetchEPG(channelId) {
     const epgContainer = document.getElementById('epg-list');
     epgContainer.innerHTML = '<p class="epg-loading">⏳ Đang tải lịch phát sóng thực tế...</p>';
@@ -55,9 +55,8 @@ async function fetchEPG(channelId) {
     });
 }
 
-// Xử lý tự động khi bị chặn CORS hoặc đứt luồng
 player.on('error', function() {
-    console.warn("Luồng video bị chặn hoặc lỗi CORS.");
+    console.warn("Lỗi tải luồng video, tự động đóng bảng thông báo lỗi.");
     const errorDisplay = player.getChild('errorDisplay');
     if (errorDisplay) {
         errorDisplay.close();
@@ -68,7 +67,6 @@ function playChannel(channelName, streamUrl, channelId) {
     const channelTitle = document.getElementById('current-channel-name');
     channelTitle.innerHTML = "Đang phát: <b>" + channelName + "</b>";
 
-    // Highlight nút logo được chọn dựa theo thuộc tính onclick
     document.querySelectorAll('.channel-btn').forEach(btn => {
         if (btn.getAttribute('onclick').includes(channelId)) {
             btn.classList.add('active');
@@ -79,9 +77,8 @@ function playChannel(channelName, streamUrl, channelId) {
 
     fetchEPG(channelId);
 
-    // Chèn CORS Proxy tự động nếu chạy bằng file:/// trực tiếp
     let finalUrl = streamUrl;
-    if (window.location.protocol === 'file:') {
+    if (window.location.protocol === 'file:' || window.location.hostname.includes('vercel.app')) {
         finalUrl = 'https://corsproxy.io/?' + encodeURIComponent(streamUrl);
     }
 
@@ -90,5 +87,5 @@ function playChannel(channelName, streamUrl, channelId) {
         type: 'application/x-mpegURL'
     });
     
-    player.play().catch(e => console.log("Cần bấm Play để phát:", e));
+    player.play().catch(e => console.log("Cần bấm Play để phát video:", e));
 }
